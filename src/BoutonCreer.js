@@ -13,7 +13,8 @@ const BoutonCreer = ({onValider}) => (
     <View style={styles.conteneurBouton}>
         <TouchableHighlight
             underlayColor='#efefef'
-            style={styles.bouton}>
+            style={styles.bouton}
+            onPress={onValider}>
             <Text style={styles.valider}>
                 Valider
             </Text>

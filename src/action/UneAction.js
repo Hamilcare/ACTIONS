@@ -7,13 +7,14 @@ import BoutonAction from './BoutonAction'
  *
  * TODO modifier le code pour afficher le titre de l'action et les boutons associés.
  */
-const UneAction = () => (
+const UneAction = ({titre}) => (
     <View style={styles.conteneurUneAction}>
         <Text style={styles.texteUneAction}>
-            Ici bientôt le titre de l'action
+            {titre}
         </Text>
         <View style={styles.boutons}>
-
+            <BoutonAction nom='Supprimer'></BoutonAction>
+            <BoutonAction nom='Terminer'></BoutonAction>
         </View>
     </View>
 )
