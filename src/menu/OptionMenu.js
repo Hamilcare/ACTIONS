@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, TouchableHighlight, StyleSheet} from 'react-native'
+import { Text, TouchableHighlight, StyleSheet } from 'react-native'
 
 /**
  * Composant représentant une option de menu.
@@ -7,15 +7,16 @@ import {Text, TouchableHighlight, StyleSheet} from 'react-native'
  *
  *
  */
-const OptionMenu = () => (
+const OptionMenu = ({ nom, nomBoutonActif, onPress }) => (
     <TouchableHighlight
         underlayColor='#efefef'
         style={[
-            styles.item,styles.selected,
+            styles.item,
             styles.border,
-            styles.selected]}>
+            nomBoutonActif === nom ? styles.selected : styles.notSelected]}
+            onPress={onPress}>
         <Text style={[styles.itemText, styles.bold]}>
-            TITRE
+            {nom}
         </Text>
 
     </TouchableHighlight>
@@ -37,6 +38,9 @@ const styles = StyleSheet.create({
         fontSize: 16
     },
     selected: {
+        backgroundColor: '#aaaaaa'
+    },
+    notSelected: {
         backgroundColor: '#ffffff'
     },
     bold: {
