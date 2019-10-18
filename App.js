@@ -16,7 +16,7 @@ export default class App extends React.Component {
     // il y aura probalement d'autres informations à stocker
     state = {
         texteSaisie: '',
-        actions: [{ titre: 'coucou', termine: false }],
+        actions: [{ titre: 'Coucou', termine: false }, { titre: 'Salut', termine: true }],
         nomBoutonActif: 'Toutes'
     }
 
@@ -28,6 +28,14 @@ export default class App extends React.Component {
             termine: !this.state.actions[actionIndex].termine
         }
         this.setState({ actions: [...this.state.actions] })
+    }
+
+    onActionSuppressed(action) {
+        console.log("suppression de l'action ",action)
+        const actionIndex = this.state.actions.findIndex((a) => a.titre === action.titre)
+        console.log(actionIndex)
+        this.state.actions.splice(actionIndex, 1)
+        this.setState({actions : this.state.actions})
     }
 
     /**
@@ -76,7 +84,7 @@ export default class App extends React.Component {
                 <ScrollView keyboardShouldPersistTaps='always' style={styles.content}>
                     <Entete />
                     <Saisie texteSaisie={texteSaisie} evtTexteModifie={(titre) => this.quandLaSaisieChange(titre)} />
-                    <ListeActions actions={actions} onActionTerminated={(action) => this.onActionTerminated(action)} filterFonction={(action) => this.filterAction(action)} />
+                    <ListeActions actions={actions} onActionTerminated={(action) => this.onActionTerminated(action)} onActionSuppressed={(action) => this.onActionSuppressed(action)} filterFonction={(action) => this.filterAction(action)} />
                     <BoutonCreer onValider={() => this.validerNouvelleAction()} />
                 </ScrollView>
                 <Menu nomBoutonActif={nomBoutonActif} onClicButon={(nomBouton) => this.clicBoutonMenu(nomBouton)} />
